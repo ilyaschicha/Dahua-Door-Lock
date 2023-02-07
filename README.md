@@ -54,7 +54,7 @@ in `Dahua-Door-Lock-Flutter/lib/main.dart` make sure :
 ```
 $ cd ../Dahua-Door-Lock-Flutter
 $ flutter pub get
-$ flutter run --rlease
+$ flutter run --release
 ```
 
 ## Note
