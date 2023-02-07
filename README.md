@@ -4,7 +4,7 @@
     <img
         alt="Flutter"
         src="
-        https://storage.googleapis.com/cms-storage-bucket/6e19fee6b47b36ca613f.png
+        /images/flutter.png
         "
     />
     </div>
@@ -12,7 +12,7 @@
     <img
         style="float: right;"
         alt="Dahua.jpg"
-        src="//upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Dahua.jpg/220px-Dahua.jpg"
+        src="/images/Dahua.jpg"
     />
     </div>
 </div>
