@@ -15,12 +15,6 @@
     </div>
 </div>
 
-
-
-# Door Lock
-
-A HTTP based request to unlock the door using Flutter/Dart
-
 ## Table of contents
 * [General info](#door-lock)
 * [Illustrations](#illustrations)
@@ -28,6 +22,11 @@ A HTTP based request to unlock the door using Flutter/Dart
 * [Dependencies](#dependencies)
 * [Setup](#setup)
 * [Note](#note)
+
+
+# Door Lock
+
+A HTTP based request to unlock the door using Flutter/Dart
 
 # Illustrations
 ![app](images/app.png)
