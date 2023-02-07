@@ -50,8 +50,8 @@ To run this project, to run you need those dependencies
 To run this project, install it locally using flutter:
 
 in `Dahua-Door-Lock-Flutter/lib/main.dart` make sure :
-* to set your username and passowrd to access webserver `line 66`.
-* to set your web server ip address `line 68`.
+* to set your username and passowrd to access webserver `line 69`.
+* to set your web server ip address `line 73`.
 ```
 $ cd ../Dahua-Door-Lock-Flutter
 $ flutter pub get

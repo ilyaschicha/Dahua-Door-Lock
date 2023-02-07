@@ -62,14 +62,19 @@ class _MyHomePageState extends State<MyHomePage> {
         'UserID': '101',
         'Type': 'Remote',
       };
+
       var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
-      var client = http_auth.DigestAuthClient('admin', 'admin');
+
+      // TODO : Change username password to your web server authentication.
+      String username = "admin";
+      String password = "admin";
+      var client = http_auth.DigestAuthClient(username, password);
+
+      // TODO : Change 192.168.1.2 to your web server ip address.
       var res = await client.get(
         Uri.parse('http://192.168.1.2/cgi-bin/accessControl.cgi?$query'),
       );
-      if (res.statusCode != 200) {
-        throw Exception('http.get error: statusCode= ${res.statusCode}');
-      }
+
       setState(() {
         responde = res.body.replaceAll("\n", " ");
         state = responde.toLowerCase().contains("ok") ? true : false;
