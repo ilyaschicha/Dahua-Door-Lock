@@ -3,15 +3,13 @@
     <div style="box-sizing: border-box; width: 100%">
     <img
         alt="Flutter"
-        src="
-        /images/flutter.png
-        "
+        src="/images/flutter.png"
     />
     </div>
     <div style="box-sizing: border-box; width: 100%">
     <img
         style="float: right;"
-        alt="Dahua.jpg"
+        alt="Dahua"
         src="/images/Dahua.jpg"
     />
     </div>
