@@ -17,6 +17,10 @@
 
 
 
+# Door Lock
+
+A HTTP based request to unlock the door using Flutter/Dart
+
 ## Table of contents
 * [General info](#door-lock)
 * [Illustrations](#illustrations)
@@ -27,11 +31,6 @@
 
 # Illustrations
 ![app](images/app.png)
-
-
-# Door Lock
-
-A HTTP based request to unlock the door using Flutter/Dart
 
 ## Technologies
 Project is created with:
