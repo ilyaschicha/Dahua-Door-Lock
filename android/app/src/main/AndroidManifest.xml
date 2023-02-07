@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.door_lock">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Door Lock"
         android:name="${applicationName}"
