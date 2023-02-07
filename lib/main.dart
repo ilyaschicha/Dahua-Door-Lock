@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:http_auth/http_auth.dart' as http_auth;
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +29,6 @@ class MyApp extends StatelessWidget {
     return MaterialColor(color.value, swatch);
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: buildMaterialColor(const Color(0xFF65C8C3)),
+        useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -55,17 +56,22 @@ class _MyHomePageState extends State<MyHomePage> {
   String responde = "";
   void _openDoor() async {
     try {
-      ProcessResult p = await Process.run('curl', [
-        '-s',
-        '--globoff',
-        '--digest',
-        '--user',
-        'admin:ali66said',
-        'http://192.168.1.2/cgi-bin/accessControl.cgi?action=openDoor&channel=1&UserID=101&Type=Remote'
-      ]);
-      print("This is the respond:  ${p.stdout}");
+      var params = {
+        'action': 'openDoor',
+        'channel': '1',
+        'UserID': '101',
+        'Type': 'Remote',
+      };
+      var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
+      var client = http_auth.DigestAuthClient('admin', 'admin');
+      var res = await client.get(
+        Uri.parse('http://192.168.1.2/cgi-bin/accessControl.cgi?$query'),
+      );
+      if (res.statusCode != 200) {
+        throw Exception('http.get error: statusCode= ${res.statusCode}');
+      }
       setState(() {
-        responde = p.stdout.replaceAll("\n", " ");
+        responde = res.body.replaceAll("\n", " ");
         state = responde.toLowerCase().contains("ok") ? true : false;
       });
     } on IOException catch (e) {
@@ -130,17 +136,21 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           Text(
                             "Main door lock",
-                            style:
-                                Theme.of(context).textTheme.headline6?.copyWith(
-                                      color: const Color(0xFFF7FFFF),
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  color: const Color(0xFFF7FFFF),
+                                ),
                           ),
                           Text(
                             state ? "Unlocked" : "Locked",
-                            style:
-                                Theme.of(context).textTheme.headline4?.copyWith(
-                                      color: const Color(0xFFF7FFFF),
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium
+                                ?.copyWith(
+                                  color: const Color(0xFFF7FFFF),
+                                ),
                           ),
                         ],
                       ),
@@ -163,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             : responde != ""
                                 ? responde
                                 : "Your lock is locked",
-                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               color: responde != ""
                                   ? Colors.red[400]
                                   : const Color(0xFFF7FFFF),
